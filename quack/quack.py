@@ -113,8 +113,8 @@ def _fetch_modules(config, specific_module=None):
             subprocess.call('git rm --quiet --cached .gitmodules'.split())
 
         print('\033[1A' + '  Cloned: ' + module[0] + (tag or hexsha))
-        print('\033[1A' + '\033[32m' +
-              str(u'\u2713'.encode('utf-8')) + '\033[37m')
+        # print('\033[1A' + '\033[32m' +
+        #       str(u'\u2713'.encode('utf-8')) + '\033[37m')
 
         if config.get('gitignore'):
             with open('.gitignore', 'a') as file_pointer:
@@ -195,10 +195,10 @@ def _run_tasks(config, profile):
 
 def _prompt_to_create():
     """Prompt user to create quack configuration."""
-    yes_or_no = raw_input(
+    yes_or_no = input(
         'No quack configuration found, do you want to create one? (y/N): ')
     if yes_or_no.lower() == 'y':
-        project_name = raw_input('Provide project name: ')
+        project_name = input('Provide project name: ')
         with open('quack.yaml', 'a') as file_pointer:
             file_pointer.write("""name: %s
 modules:
